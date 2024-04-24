@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.exchangerates.controller;
 
-import com.example.demo.UserService;
-import com.example.demo.request.AddOrDeleteCurrencyRequest;
+import com.exchangerates.UserService;
+import com.exchangerates.request.AddOrDeleteCurrencyRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

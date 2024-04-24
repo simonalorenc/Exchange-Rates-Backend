@@ -1,12 +1,10 @@
-package com.example.demo;
+package com.exchangerates;
 
-import com.example.demo.database.User;
-import com.example.demo.exception.UserAlreadyExistsException;
-import com.example.demo.exception.UserDoNotExist;
+import com.exchangerates.database.User;
+import com.exchangerates.exception.UserAlreadyExistsException;
+import com.exchangerates.exception.UserDoNotExist;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
-package com.example.demo.controller;
+package com.exchangerates.controller;
 
-import com.example.demo.database.User;
-import com.example.demo.exception.UserAlreadyExistsException;
-import com.example.demo.exception.UserDoNotExist;
-import com.example.demo.UserService;
-import com.example.demo.request.RegisterOrLoginUserRequest;
+import com.exchangerates.database.User;
+import com.exchangerates.exception.UserAlreadyExistsException;
+import com.exchangerates.exception.UserDoNotExist;
+import com.exchangerates.UserService;
+import com.exchangerates.request.RegisterOrLoginUserRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

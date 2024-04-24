@@ -1,4 +1,4 @@
-package com.example.demo.database;
+package com.exchangerates.database;
 
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
