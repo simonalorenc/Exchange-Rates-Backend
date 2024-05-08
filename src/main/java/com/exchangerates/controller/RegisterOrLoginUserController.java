@@ -1,36 +1,33 @@
 package com.exchangerates.controller;
 
 import com.exchangerates.database.User;
+import com.exchangerates.UserService;
 import com.exchangerates.exception.UserAlreadyExistsException;
 import com.exchangerates.exception.UserDoNotExist;
-import com.exchangerates.UserService;
-import com.exchangerates.request.RegisterOrLoginUserRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/auth")
+@RequiredArgsConstructor
 public class RegisterOrLoginUserController {
-    private final UserService userService;
+    private final AuthenticationService service;
 
-    public RegisterOrLoginUserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
+//    @GetMapping("/users")
+//    public List<User> getAllUsers() {
+//        return userService.getAllUsers();
+//    }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody RegisterOrLoginUserRequest request) {
+    public ResponseEntity<String> register(
+            @RequestBody RegisterRequest request
+    ) {
         try {
-            userService.registerUser(request.getEmail(), request.getPassword());
+            service.register(request);
         } catch (UserAlreadyExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
@@ -38,9 +35,11 @@ public class RegisterOrLoginUserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody RegisterOrLoginUserRequest request) {
+    public ResponseEntity<String> login(
+            @RequestBody AuthenticationRequest request
+    ) {
         try {
-            userService.loginUser(request.getEmail(), request.getPassword());
+            service.login(request);
         } catch (UserDoNotExist e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }

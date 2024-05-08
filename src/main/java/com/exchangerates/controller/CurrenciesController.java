@@ -2,23 +2,20 @@ package com.exchangerates.controller;
 
 import com.exchangerates.UserService;
 import com.exchangerates.request.AddOrDeleteCurrencyRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 public class CurrenciesController {
-
-    private UserService userService;
-
-    public CurrenciesController(UserService userService) {
-        this.userService = userService;
-    }
+    private final UserService userService;
 
     @GetMapping("/getUserCurrencies")
     public ResponseEntity<String> getUserCurrencies(@RequestParam String email) {
         String currencies = userService.getUserCurrencies(email);
-        return ResponseEntity.ok(currencies);
+        return ResponseEntity.ok("user currencies: " + currencies);
     }
 
     @PostMapping("/addCurrency")
