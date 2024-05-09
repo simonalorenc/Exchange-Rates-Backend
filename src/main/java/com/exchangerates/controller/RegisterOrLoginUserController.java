@@ -7,6 +7,7 @@ import com.exchangerates.exception.UserDoNotExist;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,26 +24,28 @@ public class RegisterOrLoginUserController {
 //    }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(
+    public ResponseEntity<?> register(
             @RequestBody RegisterRequest request
     ) {
         try {
-            service.register(request);
+            AuthenticationResponse response = service.register(request);
+            return ResponseEntity.ok(response);
         } catch (UserAlreadyExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
-        return ResponseEntity.accepted().build();
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(
+    public ResponseEntity<?> login(
             @RequestBody AuthenticationRequest request
     ) {
         try {
-            service.login(request);
+            AuthenticationResponse response = service.login(request);
+            return ResponseEntity.ok(response);
         } catch (UserDoNotExist e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect Password");
         }
-        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 }
