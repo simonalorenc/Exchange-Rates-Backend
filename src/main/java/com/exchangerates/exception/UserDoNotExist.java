@@ -1,4 +1,4 @@
-package com.example.demo.exception;
+package com.exchangerates.exception;
 
 public class UserDoNotExist extends RuntimeException{
 

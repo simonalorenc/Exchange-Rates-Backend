@@ -1,4 +1,4 @@
-package com.example.demo.request;
+package com.exchangerates.request;
 
 import org.springframework.lang.NonNull;
 
