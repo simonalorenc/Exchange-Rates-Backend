@@ -26,7 +26,7 @@ public class AuthenticationService {
     public AuthenticationResponse register(RegisterRequest request) {
         Optional<User> existingUser = repository.findByEmail((request.getEmail()));
         if (existingUser.isPresent()) {
-            throw new UserAlreadyExistsException("User with email " + request.getEmail() + " already exist.");
+            throw new UserAlreadyExistsException(request.getEmail());
         } else {
             var user = User.builder()
                     .firstname(request.getFirstname())
@@ -47,7 +47,7 @@ public class AuthenticationService {
     public AuthenticationResponse login(AuthenticationRequest request) {
         Optional<User> optionalUser = repository.findByEmail((request.getEmail()));
         if (optionalUser.isEmpty()) {
-            throw new UserDoNotExist("User with email " + request.getEmail() + " don't exist.");
+            throw new UserDoNotExist(request.getEmail());
         } else {
             try {
                 authenticationManager.authenticate(

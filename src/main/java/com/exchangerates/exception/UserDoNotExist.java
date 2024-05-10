@@ -2,8 +2,10 @@ package com.exchangerates.exception;
 
 public class UserDoNotExist extends RuntimeException{
 
-    public UserDoNotExist(String message) {
-        super(message);
+    public UserDoNotExist() {}
+
+    public UserDoNotExist(String email) {
+        super("User with email " + email + " doesn't exist.");
     }
 
     public UserDoNotExist(String message, Throwable cause) {

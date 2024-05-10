@@ -1,7 +1,5 @@
 package com.exchangerates.controller;
 
-import com.exchangerates.database.User;
-import com.exchangerates.UserService;
 import com.exchangerates.exception.UserAlreadyExistsException;
 import com.exchangerates.exception.UserDoNotExist;
 import lombok.RequiredArgsConstructor;
@@ -10,18 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class RegisterOrLoginUserController {
     private final AuthenticationService service;
-
-//    @GetMapping("/users")
-//    public List<User> getAllUsers() {
-//        return userService.getAllUsers();
-//    }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(

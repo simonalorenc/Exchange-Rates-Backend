@@ -15,7 +15,7 @@ public class CurrenciesController {
     @GetMapping("/getUserCurrencies")
     public ResponseEntity<String> getUserCurrencies(@RequestParam String email) {
         String currencies = userService.getUserCurrencies(email);
-        return ResponseEntity.ok("user currencies: " + currencies);
+        return ResponseEntity.ok(currencies);
     }
 
     @PostMapping("/addCurrency")

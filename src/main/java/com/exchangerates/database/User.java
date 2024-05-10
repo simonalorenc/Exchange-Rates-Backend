@@ -70,38 +70,8 @@ public class User implements UserDetails {
         return true;
     }
 
-    @Nullable
-    public String getCurrencies() {
-        return currencies;
-    }
-
-    public void setCurrencies(@Nullable String currencies) {
-        this.currencies = currencies;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @NonNull
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(@NonNull String email) {
-        this.email = email;
-    }
-
     @NonNull
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(@NonNull String password) {
-        this.password = password;
     }
 }
