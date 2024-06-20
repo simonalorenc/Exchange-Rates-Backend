@@ -6,6 +6,7 @@ import com.exchangerates.database.User;
 import com.exchangerates.database.UserRepository;
 import com.exchangerates.exception.UserAlreadyExistsException;
 import com.exchangerates.exception.UserDoNotExist;
+import com.exchangerates.request.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

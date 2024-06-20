@@ -2,6 +2,7 @@ package com.exchangerates.controller;
 
 import com.exchangerates.exception.UserAlreadyExistsException;
 import com.exchangerates.exception.UserDoNotExist;
+import com.exchangerates.request.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
