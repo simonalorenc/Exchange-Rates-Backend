@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,8 +16,8 @@ public class CurrenciesController {
     private final UserService userService;
 
     @GetMapping("/getUserCurrencies")
-    public ResponseEntity<String> getUserCurrencies(Principal connectedUser) {
-        String currencies = userService.getUserCurrencies(connectedUser);
+    public ResponseEntity<List<String>> getUserCurrencies(Principal connectedUser) {
+        List<String> currencies = userService.getUserCurrencies(connectedUser);
         return ResponseEntity.ok(currencies);
     }
 

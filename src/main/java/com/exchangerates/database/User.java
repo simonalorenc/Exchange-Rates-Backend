@@ -34,7 +34,7 @@ public class User implements UserDetails {
     @NonNull
     private String password;
     @Nullable
-    private String currencies;
+    private List<String> currencies;
     @Enumerated(EnumType.STRING)
     private Role role;
 

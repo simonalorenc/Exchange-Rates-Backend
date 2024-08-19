@@ -7,8 +7,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -22,7 +24,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public String getUserCurrencies(Principal connectedUser) {
+    public List<String> getUserCurrencies(Principal connectedUser) {
         var user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
         return user.getCurrencies();
     }
@@ -30,22 +32,23 @@ public class UserService {
     @Transactional
     public void addCurrency(String currency, Principal connectedUser) {
         var user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
-        String userCurrencies = user.getCurrencies();
-        if (userCurrencies == null || userCurrencies.isEmpty()) {
-            user.setCurrencies(currency);
-        } else {
-            user.setCurrencies(userCurrencies + ", " + currency);
+        List<String> userCurrencies = user.getCurrencies();
+        if (userCurrencies == null) {
+            userCurrencies = new ArrayList<>();
         }
+        userCurrencies.add(currency);
+        user.setCurrencies(userCurrencies);
+
         userRepository.save(user);
     }
 
     @Transactional
     public void deleteCurrency(String currency, Principal connectedUser) {
         var user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
-        String userCurrencies = user.getCurrencies();
-        String pattern ="\\b" + currency + "\\b,?\\s*|,?\\s*\\b" + currency + "\\b";
-        String newUserCurrencies = userCurrencies.replaceAll(pattern, "");
+        List<String> userCurrencies = user.getCurrencies();
+        List<String> newUserCurrencies = userCurrencies.stream().filter(el -> !el.equals(currency)).collect(Collectors.toList());
         user.setCurrencies(newUserCurrencies);
+        userRepository.save(user);
     }
 
     private User checkUser(String email) {
