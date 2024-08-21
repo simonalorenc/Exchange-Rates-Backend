@@ -5,7 +5,7 @@ public class UserDoNotExist extends RuntimeException{
     public UserDoNotExist() {}
 
     public UserDoNotExist(String email) {
-        super("User with email " + email + " doesn't exist.");
+        super("User doesn't exist.");
     }
 
     public UserDoNotExist(String message, Throwable cause) {
