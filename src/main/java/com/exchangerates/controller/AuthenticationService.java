@@ -1,7 +1,6 @@
 package com.exchangerates.controller;
 
 import com.exchangerates.config.JwtService;
-import com.exchangerates.database.Role;
 import com.exchangerates.database.User;
 import com.exchangerates.database.UserRepository;
 import com.exchangerates.exception.UserAlreadyExistsException;
