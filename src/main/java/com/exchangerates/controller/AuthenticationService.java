@@ -24,7 +24,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws UserAlreadyExistsException {
         Optional<User> existingUser = repository.findByEmail((request.getEmail()));
         if (existingUser.isPresent()) {
             throw new UserAlreadyExistsException(request.getEmail());
@@ -34,7 +34,6 @@ public class AuthenticationService {
                     .lastname(request.getLastname())
                     .email(request.getEmail())
                     .password(passwordEncoder.encode(request.getPassword()))
-                    .role(Role.USER)
                     .build();
             repository.save(user);
             var jwtToken = jwtService.generateToken(user);
@@ -45,8 +44,7 @@ public class AuthenticationService {
         }
     }
 
-    //correct exception, catch and handle dodac
-    public AuthenticationResponse login(AuthenticationRequest request) {
+    public AuthenticationResponse login(AuthenticationRequest request) throws UserDoNotExist, BadCredentialsException {
         Optional<User> optionalUser = repository.findByEmail((request.getEmail()));
         if (optionalUser.isEmpty()) {
             throw new UserDoNotExist(request.getEmail());

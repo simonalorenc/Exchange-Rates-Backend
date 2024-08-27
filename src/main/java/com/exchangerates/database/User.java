@@ -35,14 +35,11 @@ public class User implements UserDetails {
     private String password;
     @Nullable
     private List<String> currencies;
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
 
-//ta metoda powinna zwrócić authorities, co jak nie chcę ról?
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of();
     }
 
     @Override
