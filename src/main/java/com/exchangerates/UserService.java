@@ -50,9 +50,4 @@ public class UserService {
         user.setCurrencies(newUserCurrencies);
         userRepository.save(user);
     }
-
-//    private User checkUser(String email) {
-//        Optional<User> userOptional = userRepository.findByEmail(email);
-//        return userOptional.orElseThrow(() -> new RuntimeException("User not found"));
-//    }
 }
