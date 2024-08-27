@@ -1,9 +1,9 @@
-package com.example.demo.exception;
+package com.exchangerates.exception;
 
 public class UserAlreadyExistsException extends RuntimeException{
 
-    public UserAlreadyExistsException(String message) {
-        super(message);
+    public UserAlreadyExistsException(String email) {
+        super("User with email " + email + " already exist.");
     }
 
     public UserAlreadyExistsException(String message, Throwable cause) {
