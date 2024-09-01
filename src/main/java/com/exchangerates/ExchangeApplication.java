@@ -20,7 +20,7 @@ public class ExchangeApplication {
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
-		config.addAllowedOrigin("http://localhost:4200");
+		config.addAllowedOrigin("https://exchanges-rates.netlify.app");
 		config.setAllowCredentials(true);
 		config.setAllowedMethods(List.of("GET", "POST", "DELETE"));
 		config.addAllowedHeader("*");
