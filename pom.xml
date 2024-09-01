@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>exchangerates</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>exchange</name>
 	<description>Exchanges Rates project for Spring Boot</description>
 	<properties>
